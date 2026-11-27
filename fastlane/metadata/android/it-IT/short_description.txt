@@ -1,0 +1,1 @@
+plain – un launcher minimalista. Derivato da OLauncher CF.

@@ -1,0 +1,142 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.compose'
+}
+
+// Release signing: from environment variables (CI) or from the git-ignored release.properties
+// (storeFile, storePassword, keyAlias, keyPassword). Without it the release APK is built unsigned.
+def releaseProps = new Properties()
+def releasePropsFile = rootProject.file('release.properties')
+if (releasePropsFile.exists()) releasePropsFile.withInputStream { releaseProps.load(it) }
+def signingValue = { String key, String env -> System.getenv(env) ?: releaseProps.getProperty(key) }
+def releaseStoreFile = signingValue('storeFile', 'PLAIN_KEYSTORE_FILE')
+
+// Reads the current Git tag (e.g., “v1.2.1”), if available
+def getGitVersionName = { ->
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'describe', '--tags', '--exact-match'
+            standardOutput = stdout
+            ignoreExitValue = true
+        }
+        def tag = stdout.toString().trim()
+        return tag.startsWith('v') ? tag.substring(1) : null
+    } catch (Exception ignored) {
+        return null
+    }
+}
+
+// Calculates the deterministic versionCode (X * 10000 + Y * 100 + Z) from “X.Y.Z”
+def computeVersionCode = { String version ->
+    def matcher = (version =~ /^(\d+)\.(\d+)\.(\d+)/)
+    if (matcher.find()) {
+        int major = matcher.group(1).toInteger()
+        int minor = matcher.group(2).toInteger()
+        int patch = matcher.group(3).toInteger()
+        return major * 10000 + minor * 100 + patch
+    }
+    return 1
+}
+
+def appVersionName = (project.findProperty('appVersionName') ?: getGitVersionName() ?: '3.0.2').toString()
+def appVersionCode = (project.findProperty('appVersionCode') ?: computeVersionCode(appVersionName)).toString().toInteger()
+
+android {
+    namespace 'de.juvento.plain'
+    compileSdk 34
+
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
+
+    defaultConfig {
+        applicationId "de.juvento.plain"
+        // Android 13 (API 33) is the primary target; 9 (API 28) is the floor so that
+        // screen locking can always use the accessibility service (no device admin).
+        minSdk 28
+        targetSdk 34
+        versionCode = appVersionCode
+        versionName = appVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        compose true
+        viewBinding true
+        buildConfig true
+    }
+
+    signingConfigs {
+        if (releaseStoreFile) {
+            release {
+                storeFile rootProject.file(releaseStoreFile)
+                storePassword signingValue('storePassword', 'PLAIN_KEYSTORE_PASSWORD')
+                keyAlias signingValue('keyAlias', 'PLAIN_KEY_ALIAS')
+                keyPassword signingValue('keyPassword', 'PLAIN_KEY_PASSWORD')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            if (releaseStoreFile) signingConfig signingConfigs.release
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            applicationIdSuffix ".debug"
+        }
+    }
+
+    androidResources {
+        generateLocaleConfig true
+    }
+
+    lint {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.6'
+    implementation 'androidx.fragment:fragment-ktx:1.8.5'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.8.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.8.3'
+
+    // Settings UI
+    implementation platform('androidx.compose:compose-bom:2024.10.01')
+    implementation 'androidx.activity:activity-compose:1.9.3'
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.compose.material:material-icons-core'
+    implementation 'androidx.compose.foundation:foundation'
+    implementation 'androidx.compose.ui:ui'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+}

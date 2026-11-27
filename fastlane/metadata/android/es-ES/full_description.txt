@@ -1,0 +1,26 @@
+plain: un lanzador sencillo y minimalista, derivado de Olauncher CF.
+
+<b>Características:</b>
+<ul>
+<li><b>Minimalista y sin distracciones:</b> Diseño limpio y ordenado, sin anuncios, seguimiento, recopilación de datos ni acceso a Internet.</li>
+<li><b>Privacidad y permisos mínimos:</b> Solo utiliza los permisos esenciales. Solo se necesita un servicio de accesibilidad opcional si deseas bloquear la pantalla o abrir la lista de aplicaciones recientes mediante gestos.</li>
+<li><b>Fondo de pantalla del sistema:</b> No establece su propio fondo de pantalla, sino que utiliza el fondo de pantalla actual del sistema.</li>
+<li><b>Aspecto personalizable:</b> Tema claro u oscuro (manual o sincronizado con la configuración del sistema), fuentes y colores personalizados, tamaños de fuente ajustables y alineación independiente para el reloj y la fecha, las aplicaciones de la pantalla de inicio y el cajón de aplicaciones.</li>
+<li><b>Reloj y fecha:</b> Visualización opcional con acciones personalizables al tocarla.</li>
+<li><b>Gestos personalizados:</b> Asigna acciones individuales a los gestos de deslizar hacia arriba, hacia abajo, hacia la izquierda, hacia la derecha y doble toque.</li>
+<li><b>Conjuntos de aplicaciones flexibles en la pantalla de inicio:</b> Crea tantos conjuntos de aplicaciones como quieras sin límite fijo, reordena fácilmente las aplicaciones y personaliza los nombres de las aplicaciones de la pantalla de inicio en el menú de ajustes. Aunque puedes cambiar de conjunto manualmente, están diseñados para el cambio automático mediante aplicaciones de automatización (como Tasker) que utilizan Android Intents, lo que te permite utilizar diferentes configuraciones de aplicaciones en casa, mientras te desplazas o en el coche.</li>
+<li><b>Cajón de aplicaciones inteligente y búsqueda:</b> Busca aplicaciones mediante el teclado con la opción de inicio automático cuando solo quede un resultado coincidente. Mantén pulsada cualquier aplicación para cambiarle el nombre (independientemente de su nombre en la pantalla de inicio), ocultarla, abrir la información de la aplicación o desinstalarla.</li>
+<li><b>Palabras clave de las aplicaciones:</b> Asigna palabras clave personalizadas a las aplicaciones del cajón (manteniendo pulsado) para incluirlas en las búsquedas del teclado. Agrupa aplicaciones bajo una misma etiqueta (por ejemplo, «Mensajes» para aplicaciones de correo, SMS y chat), añade términos intuitivos para nombres difíciles de recordar (por ejemplo, «TV» para una guía de programación) o configura alias cortos para iniciarlas rápidamente. </li>
+<li><b>Favoritos:</b> Marca aplicaciones como favoritas (manteniendo pulsado en el cajón) para que aparezcan en la parte superior del cajón de aplicaciones.</li>
+<li><b>Aplicaciones web progresivas (PWA) y accesos directos:</b> Admite accesos directos anclados, como sitios web añadidos mediante la opción «Instalar» o «Crear acceso directo» de Chrome (requiere que Plain esté configurado como lanzador predeterminado). Aparecen en el cajón de aplicaciones y se pueden utilizar en conjuntos de aplicaciones y gestos.</li>
+<li><b>Detalles técnicos:</b> Código completamente reestructurado con numerosas correcciones de errores y optimizaciones.</li>
+</ul>
+
+<b>Permisos:</b>
+<ul>
+<li><code>android.permission.EXPAND_STATUS_BAR</code>: Permite expandir o contraer la barra de estado.</li>
+<li><code>android.permission.QUERY_ALL_PACKAGES</code>: Permite consultar las aplicaciones instaladas para mostrar la lista de aplicaciones.</li>
+<li><code>android.permission.REQUEST_DELETE_PACKAGES</code>: Necesario para solicitar la eliminación de paquetes (no se pueden desinstalar aplicaciones sin la confirmación del usuario).</li>
+<li><b>Servicio de accesibilidad opcional:</b> Se utiliza exclusivamente para bloquear la pantalla y mostrar las aplicaciones recientes.</li>
+<li><b>Sin acceso a la red, sin recopilación de datos.</b></li>
+</ul>

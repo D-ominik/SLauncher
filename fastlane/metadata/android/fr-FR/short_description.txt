@@ -1,0 +1,1 @@
+plain – un lanceur minimaliste. Dérivé d'OLauncher CF.

@@ -1,0 +1,128 @@
+name: Build & Publish Release APK
+
+# Push a tag like v1.2.0 to build, sign and publish a release.
+# Required repository secrets: KEY_STORE_BASE64 (base64 of the keystore file),
+# KEY_STORE_PASSWORD, ALIAS, KEY_PASSWORD
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  changelog:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      version_code: ${{ steps.meta.outputs.version_code }}
+    steps:
+    - name: Checkout main branch
+      uses: actions/checkout@v5
+      with:
+        ref: main
+        fetch-depth: 0
+
+    - name: Calculate Version & Code
+      id: meta
+      run: |
+        if [[ "$GITHUB_REF_NAME" =~ ^v([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+          MAJOR="${BASH_REMATCH[1]}"
+          MINOR="${BASH_REMATCH[2]}"
+          PATCH="${BASH_REMATCH[3]}"
+          VERSION="$MAJOR.$MINOR.$PATCH"
+          VERSION_CODE=$((MAJOR * 10000 + MINOR * 100 + PATCH))
+        else
+          VERSION="0.0.0-dev"
+          VERSION_CODE=1
+        fi
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+
+    - name: Generate complete changelog for repo
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: orhun/git-cliff-action@v4
+      with:
+        config: cliff.toml
+        args: --verbose
+      env:
+        OUTPUT: CHANGELOG.md
+
+    - name: Generate changelog for F-Droid
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: orhun/git-cliff-action@v4
+      with:
+        config: cliff.toml
+        args: --latest --strip all
+      env:
+        OUTPUT: fastlane/metadata/android/en-US/changelogs/${{ steps.meta.outputs.version_code }}.txt
+
+    - name: Truncate F-Droid changelog to 500 chars
+      if: startsWith(github.ref, 'refs/tags/v')
+      run: |
+        FILE="fastlane/metadata/android/en-US/changelogs/${{ steps.meta.outputs.version_code }}.txt"
+        head -c 500 "$FILE" > "${FILE}.tmp" && mv "${FILE}.tmp" "$FILE"
+
+    - name: Commit changes
+      if: startsWith(github.ref, 'refs/tags/v')
+      id: commit
+      uses: stefanzweifel/git-auto-commit-action@v7
+      with:
+        branch: main
+        commit_message: "docs(changelog): update for ${{ github.ref_name }}"
+        file_pattern: "CHANGELOG.md fastlane/metadata/android/en-US/changelogs/*.txt"
+
+    - name: Move tag to changelog commit (for F-Droid)
+      if: startsWith(github.ref, 'refs/tags/v') && steps.commit.outputs.changes_detected == 'true'
+      run: |
+        git tag -f "${{ github.ref_name }}"
+        git push -f origin "${{ github.ref_name }}"
+
+  release:
+    needs: changelog
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout tag
+      uses: actions/checkout@v5
+      with:
+        ref: ${{ github.ref_name }}
+
+    - uses: actions/setup-java@v5
+      with:
+        distribution: temurin
+        java-version: '17'
+    - uses: gradle/actions/setup-gradle@v4
+
+    - name: Decode keystore
+      run: echo "${{ secrets.KEY_STORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/plain.jks"
+
+    - name: Build signed release APK
+      env:
+        PLAIN_KEYSTORE_FILE: ${{ runner.temp }}/plain.jks
+        PLAIN_KEYSTORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+        PLAIN_KEY_ALIAS: ${{ secrets.ALIAS }}
+        PLAIN_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        VERSION: ${{ needs.changelog.outputs.version }}
+        VERSION_CODE: ${{ needs.changelog.outputs.version_code }}
+      run: |
+        echo "Building version $VERSION (code: $VERSION_CODE)"
+        ./gradlew assembleRelease -PappVersionName="$VERSION" -PappVersionCode="$VERSION_CODE"
+
+    - name: Rename APK
+      run: mv app/build/outputs/apk/release/app-release.apk "plain-v${{ needs.changelog.outputs.version }}.apk"
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v5
+      with:
+        name: apk
+        path: plain-*.apk
+
+    - name: Publish GitHub release
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v2
+      with:
+        files: plain-*.apk

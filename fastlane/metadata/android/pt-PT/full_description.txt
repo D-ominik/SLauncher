@@ -1,0 +1,26 @@
+plain - um Launcher simples e minimalista, derivado do Olauncher CF.
+
+<b>Funcionalidades:</b>
+<ul>
+<li><b>Minimalista e sem distrações:</b> Design limpo e organizado, sem anúncios, rastreamento, recolha de dados ou acesso à Internet.</li>
+<li><b>Privacidade e permissões mínimas:</b> Utiliza apenas as permissões essenciais. Um serviço de acessibilidade opcional só é necessário se pretender bloquear o ecrã ou abrir as aplicações recentes através de gestos.</li>
+<li><b>Fundo de ecrã do sistema:</b> Não define o seu próprio fundo de ecrã, utilizando, em vez disso, o fundo de ecrã atual do sistema.</li>
+<li><b>Aparência personalizável:</b> Tema claro ou escuro (manual ou sincronizado com as definições do sistema), tipos de letra e cores personalizadas, tamanhos de tipo de letra ajustáveis e alinhamento independente para o relógio/data, aplicações do ecrã inicial e a gaveta de aplicações.</li>
+<li><b>Relógio e data:</b> Exibição opcional com ações personalizáveis ao tocar.</li>
+<li><b>Gestos personalizados:</b> Atribua ações individuais aos gestos de deslizar para cima, para baixo, para a esquerda, para a direita e de tocar duas vezes.</li>
+<li><b>Conjuntos flexíveis de aplicações no ecrã inicial:</b> Crie quantos conjuntos de aplicações quiser, sem limite fixo, reordene facilmente as aplicações e personalize os nomes das aplicações no ecrã inicial no menu de definições. Embora seja possível alternar entre conjuntos manualmente, estes foram concebidos para a alternância automática através de aplicações de automação (como o Tasker) utilizando Android Intents — permitindo-lhe utilizar diferentes configurações de aplicações em casa, em viagem ou no carro.</li>
+<li><b>Gaveta de aplicações inteligente e pesquisa:</b> Pesquise aplicações através do teclado com lançamento automático opcional quando restar apenas um resultado correspondente. Mantenha premido qualquer aplicação para a renomear (independentemente do seu nome no ecrã inicial), ocultá-la, abrir as informações da aplicação ou desinstalá-la.</li>
+<li><b>Palavras-chave das aplicações:</b> Atribua palavras-chave personalizadas às aplicações na gaveta (através de um toque prolongado) para as incluir nas pesquisas do teclado. Agrupe aplicações sob uma única etiqueta (por exemplo, «Mensagens» para aplicações de e-mail, SMS e chat), adicione termos intuitivos para nomes difíceis de memorizar (por exemplo, «TV» para um guia de programação) ou defina aliases curtos para um lançamento rápido. </li>
+<li><b>Favoritos:</b> Marque aplicações como favoritas (através de um toque prolongado na gaveta) para as listar no topo da gaveta de aplicações.</li>
+<li><b>Aplicações Web Progressivas (PWA) e Atalhos:</b> Suporta atalhos fixados, tais como sites adicionados através da opção «Instalar» ou «Criar atalho» do Chrome (requer que o «plain» esteja definido como o lançador predefinido). Aparecem na gaveta de aplicações e podem ser utilizados em conjuntos de aplicações e gestos.</li>
+<li><b>Por trás dos bastidores:</b> Código-fonte completamente refatorado, com inúmeras correções de erros e otimizações.</li>
+</ul>
+
+<b>Permissões:</b>
+<ul>
+<li><code>android.permission.EXPAND_STATUS_BAR</code>: Permite expandir ou recolher a barra de estado.</li>
+<li><code>android.permission.QUERY_ALL_PACKAGES</code>: Permite consultar as aplicações instaladas para apresentar a lista de aplicações.</li>
+<li><code>android.permission.REQUEST_DELETE_PACKAGES</code>: Necessário para solicitar a remoção de pacotes (não é possível desinstalar aplicações sem a confirmação do utilizador).</li>
+<li><b>Serviço de acessibilidade opcional:</b> Utilizado exclusivamente para bloquear o ecrã e mostrar as aplicações recentes.</li>
+<li><b>Sem acesso à rede, sem recolha de dados.</b></li>
+</ul>

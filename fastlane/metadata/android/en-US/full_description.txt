@@ -1,0 +1,26 @@
+plain - a simple and minimalistic Launcher, forked from Olauncher CF.
+
+<b>Features:</b>
+<ul>
+<li><b>Minimalist &amp; Distraction-Free:</b> Clean, clutter-free design without ads, tracking, data collection, or internet access.</li>
+<li><b>Privacy &amp; Minimal Permissions:</b> Only uses essential permissions. An optional Accessibility Service is only needed if you want to lock the screen or open recents via gesture.</li>
+<li><b>System Wallpaper:</b> Does not set its own background, using your current system wallpaper instead.</li>
+<li><b>Customizable Appearance:</b> Light or dark theme (manual or synced with system settings), custom fonts and colors, adjustable font sizes, and independent alignment for clock/date, home screen apps, and the app drawer.</li>
+<li><b>Clock &amp; Date:</b> Optional display with customizable tap actions.</li>
+<li><b>Custom Gestures:</b> Assign individual actions to swipe-up, swipe-down, swipe-left, swipe-right, and double-tap gestures.</li>
+<li><b>Flexible Home Screen App Sets:</b> Create any number of app sets with no fixed app limit, easily reorder apps, and customize home screen app names in the settings menu. While you can switch sets manually, they are designed for automatic switching via automation apps (such as Tasker) using Android Intents—allowing you to use different app setups at home, on the go, or in the car.</li>
+<li><b>Smart App Drawer &amp; Search:</b> Search apps via keyboard with optional auto-launch when only one match remains. Long-press any app to rename it (independently from its home screen name), hide it, open app info, or uninstall it.</li>
+<li><b>App Keywords:</b> Assign custom keywords to apps in the drawer (via long-press) to include them in keyboard searches. Group apps under a single tag (e.g., "Messaging" for mail, SMS, and chat apps), add intuitive terms for hard-to-remember names (e.g., "TV" for a program guide), or set short aliases for rapid launching.</li>
+<li><b>Favorites:</b> Mark apps as favorites (via long-press in the drawer) to list them at the top of the app drawer.</li>
+<li><b>Progressive Web Apps (PWA) &amp; Shortcuts:</b> Supports pinned shortcuts, such as websites added via Chrome's "Install" or "Create shortcut" option (requires plain to be set as the default launcher). They appear in the app drawer and can be used in app sets and gestures.</li>
+<li><b>Under the Hood:</b> Completely refactored codebase with extensive bug fixes and optimizations.</li>
+</ul>
+
+<b>Permissions:</b>
+<ul>
+<li><code>android.permission.EXPAND_STATUS_BAR</code>: Allows expanding or collapsing the status bar.</li>
+<li><code>android.permission.QUERY_ALL_PACKAGES</code>: Allows querying installed apps to display the app list.</li>
+<li><code>android.permission.REQUEST_DELETE_PACKAGES</code>: Required to prompt package removal (cannot uninstall apps without user confirmation).</li>
+<li><b>Optional Accessibility Service:</b> Used exclusively for locking the screen and showing recent apps.</li>
+<li><b>No network access, no data collection.</b></li>
+</ul>

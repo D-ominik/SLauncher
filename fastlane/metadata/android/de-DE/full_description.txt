@@ -1,0 +1,26 @@
+plain – ein einfacher und minimalistischer Launcher, der aus Olauncher CF hervorgegangen ist.
+
+<b>Funktionen:</b>
+<ul>
+<li><b>Minimalistisch und ablenkungsfrei:</b> Klares, übersichtliches Design ohne Werbung, Tracking, Datenerfassung oder Internetzugang.</li>
+<li><b>Datenschutz &amp; minimale Berechtigungen:</b> Verwendet nur die unbedingt notwendigen Berechtigungen. Ein optionaler Barrierefreiheitsdienst wird nur benötigt, wenn Sie den Bildschirm sperren oder die zuletzt verwendeten Apps per Geste öffnen möchten.</li>
+<li><b>Systemhintergrund:</b> Legt keinen eigenen Hintergrund fest, sondern verwendet stattdessen Ihren aktuellen Systemhintergrund.</li>
+<li><b>Anpassbares Erscheinungsbild:</b> Helles oder dunkles Design (manuell oder synchronisiert mit den Systemeinstellungen), benutzerdefinierte Schriftarten und Farben, anpassbare Schriftgrößen sowie unabhängige Ausrichtung für Uhr/Datum, Apps auf dem Startbildschirm und den App-Drawer.</li>
+<li><b>Uhr &amp; Datum:</b> Optionale Anzeige mit anpassbaren Tippaktionen.</li>
+<li><b>Benutzerdefinierte Gesten:</b> Weisen Sie den Gesten „Nach oben wischen“, „Nach unten wischen“, „Nach links wischen“, „Nach rechts wischen“ und „Doppeltippen“ individuelle Aktionen zu.</li>
+<li><b>Flexible App-Sets auf dem Startbildschirm:</b> Erstellen Sie eine beliebige Anzahl von App-Sets ohne festgelegte App-Begrenzung, ordnen Sie Apps ganz einfach neu an und passen Sie die Namen der Apps auf dem Startbildschirm im Einstellungsmenü an. Sie können zwar manuell zwischen den Sets wechseln, diese sind jedoch für den automatischen Wechsel über Automatisierungs-Apps (wie Tasker) unter Verwendung von Android Intents konzipiert – so können Sie zu Hause, unterwegs oder im Auto unterschiedliche App-Konfigurationen nutzen.</li>
+<li><b>Intelligenter App-Drawer und Suche:</b> Suchen Sie Apps über die Tastatur mit optionalem automatischem Start, wenn nur noch ein Treffer übrig ist. Halten Sie eine beliebige App gedrückt, um sie umzubenennen (unabhängig von ihrem Namen auf dem Startbildschirm), auszublenden, App-Informationen zu öffnen oder sie zu deinstallieren.</li>
+<li><b>App-Schlüsselwörter:</b> Weisen Sie Apps im App-Drawer (durch langes Drücken) benutzerdefinierte Schlüsselwörter zu, um sie in die Tastatursuche einzubeziehen. Gruppieren Sie Apps unter einem einzigen Tag (z. B. „Messaging“ für E-Mail-, SMS- und Chat-Apps), fügen Sie intuitive Begriffe für schwer zu merkende Namen hinzu (z. B. „TV“ für einen Programmführer) oder legen Sie kurze Aliase für den schnellen Start fest.</li>
+<li><b>Favoriten:</b> Markieren Sie Apps als Favoriten (durch langes Drücken im App-Drawer), um sie ganz oben im App-Drawer anzuzeigen.</li>
+<li><b>Progressive Web Apps (PWA) &amp; Verknüpfungen:</b> Unterstützt angeheftete Verknüpfungen, wie z. B. Websites, die über die Option „Installieren“ oder „Verknüpfung erstellen“ in Chrome hinzugefügt wurden (erfordert, dass „plain“ als Standard-Launcher festgelegt ist). Sie erscheinen im App-Drawer und können in App-Sets und Gesten verwendet werden.</li>
+<li><b>Hinter den Kulissen:</b> Komplett überarbeiteter Code mit umfangreichen Fehlerbehebungen und Optimierungen.</li>
+</ul>
+
+<b>Berechtigungen:</b>
+<ul>
+<li><code>android.permission.EXPAND_STATUS_BAR</code>: Ermöglicht das Ein- und Ausblenden der Statusleiste.</li>
+<li><code>android.permission.QUERY_ALL_PACKAGES</code>: Ermöglicht die Abfrage installierter Apps zur Anzeige der App-Liste.</li>
+<li><code>android.permission.REQUEST_DELETE_PACKAGES</code>: Erforderlich, um die Entfernung von Paketen anzufordern (Apps können ohne Bestätigung durch den Nutzer nicht deinstalliert werden).</li>
+<li><b>Optionaler Barrierefreiheitsdienst:</b> Wird ausschließlich zum Sperren des Bildschirms und zum Anzeigen der zuletzt verwendeten Apps verwendet.</li>
+<li><b>Kein Netzwerkzugriff, keine Datenerfassung.</b></li>
+</ul>

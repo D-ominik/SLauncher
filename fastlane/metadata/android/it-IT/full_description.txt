@@ -1,0 +1,26 @@
+plain - un launcher semplice e minimalista, derivato da Olauncher CF.
+
+<b>Caratteristiche:</b>
+<ul>
+<li><b>Minimalista e privo di distrazioni:</b> Design pulito e ordinato, senza pubblicità, tracciamento, raccolta dati o accesso a Internet.</li>
+<li><b>Privacy e autorizzazioni minime:</b> Utilizza solo le autorizzazioni essenziali. Un servizio di accessibilità opzionale è necessario solo se si desidera bloccare lo schermo o aprire le app recenti tramite gesti.</li>
+<li><b>Sfondo di sistema:</b> Non imposta uno sfondo proprio, ma utilizza invece lo sfondo di sistema corrente.</li>
+<li><b>Aspetto personalizzabile:</b> Tema chiaro o scuro (manuale o sincronizzato con le impostazioni di sistema), caratteri e colori personalizzati, dimensioni dei caratteri regolabili e allineamento indipendente per orologio/data, app della schermata iniziale e cassetto delle app.</li>
+<li><b>Orologio e data:</b> Visualizzazione opzionale con azioni personalizzabili al tocco.</li>
+<li><b>Gesti personalizzati:</b> Assegna azioni specifiche ai gesti di scorrimento verso l'alto, verso il basso, verso sinistra, verso destra e al doppio tocco.</li>
+<li><b>Set di app flessibili sulla schermata iniziale:</b> Crea un numero illimitato di set di app senza limiti fissi, riordina facilmente le app e personalizza i nomi delle app sulla schermata iniziale nel menu delle impostazioni. Sebbene sia possibile passare da un set all’altro manualmente, questi sono progettati per il cambio automatico tramite app di automazione (come Tasker) che utilizzano gli Intenti Android, consentendoti di utilizzare diverse configurazioni di app a casa, in viaggio o in auto.</li>
+<li><b>Cassetto delle app intelligente e ricerca:</b> Cerca le app tramite tastiera con avvio automatico opzionale quando rimane un solo risultato corrispondente. Tieni premuta a lungo su qualsiasi app per rinominarla (indipendentemente dal nome sulla schermata iniziale), nasconderla, aprire le informazioni sull’app o disinstallarla.</li>
+<li><b>Parole chiave delle app:</b> Assegna parole chiave personalizzate alle app nel cassetto (tramite pressione prolungata) per includerle nelle ricerche dalla tastiera. Raggruppa le app sotto un unico tag (ad es. “Messaggistica” per le app di posta, SMS e chat), aggiungi termini intuitivi per nomi difficili da ricordare (ad es. “TV” per una guida ai programmi) oppure imposta alias brevi per un avvio rapido. </li>
+<li><b>Preferiti:</b> Contrassegna le app come preferite (tramite pressione prolungata nel cassetto) per visualizzarle in cima al cassetto delle app.</li>
+<li><b>App Web progressive (PWA) e scorciatoie:</b> Supporta le scorciatoie aggiunte ai preferiti, come i siti web aggiunti tramite l’opzione “Installa” o “Crea scorciatoia” di Chrome (richiede che Plain sia impostato come launcher predefinito). Appaiono nel cassetto delle app e possono essere utilizzate nei set di app e nei gesti.</li>
+<li><b>Dettagli tecnici:</b> Codice completamente rifattorizzato con numerose correzioni di bug e ottimizzazioni.</li>
+</ul>
+
+<b>Autorizzazioni:</b>
+<ul>
+<li><code>android.permission.EXPAND_STATUS_BAR</code>: Consente di espandere o comprimere la barra di stato.</li>
+<li><code>android.permission.QUERY_ALL_PACKAGES</code>: Consente di interrogare le app installate per visualizzare l'elenco delle app.</li>
+<li><code>android.permission.REQUEST_DELETE_PACKAGES</code>: Necessario per richiedere la rimozione dei pacchetti (non è possibile disinstallare le app senza la conferma dell’utente).</li>
+<li><b>Servizio di accessibilità opzionale:</b> Utilizzato esclusivamente per bloccare lo schermo e mostrare le app recenti.</li>
+<li><b>Nessun accesso alla rete, nessuna raccolta di dati.</b></li>
+</ul>

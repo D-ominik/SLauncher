@@ -1,0 +1,26 @@
+plain - un lanceur simple et minimaliste, dérivé d'Olauncher CF.
+
+<b>Fonctionnalités :</b>
+<ul>
+<li><b>Minimaliste et sans distraction :</b> Un design épuré et sans encombrement, sans publicité, suivi, collecte de données ni accès à Internet.</li>
+<li><b>Confidentialité et autorisations minimales :</b> N'utilise que les autorisations essentielles. Un service d'accessibilité facultatif n'est nécessaire que si vous souhaitez verrouiller l'écran ou ouvrir la liste des applications récentes à l'aide d'un geste.</li>
+<li><b>Fond d'écran système :</b> Ne définit pas son propre fond d'écran, mais utilise à la place votre fond d'écran système actuel.</li>
+<li><b>Apparence personnalisable :</b> Thème clair ou foncé (manuel ou synchronisé avec les paramètres système), polices et couleurs personnalisables, tailles de police ajustables et alignement indépendant pour l’horloge/la date, les applications de l’écran d’accueil et le tiroir d’applications.</li>
+<li><b>Horloge et date :</b> Affichage optionnel avec des actions personnalisables au toucher.</li>
+<li><b>Gestes personnalisés :</b> Attribuez des actions spécifiques aux gestes suivants : glisser vers le haut, glisser vers le bas, glisser vers la gauche, glisser vers la droite et double-tap.</li>
+<li><b>Ensembles d’applications flexibles sur l’écran d’accueil :</b> Créez autant d’ensembles d’applications que vous le souhaitez sans limite fixe, réorganisez facilement les applications et personnalisez leurs noms sur l’écran d’accueil dans le menu des paramètres. Bien que vous puissiez changer d’ensemble manuellement, ceux-ci sont conçus pour une commutation automatique via des applications d’automatisation (telles que Tasker) utilisant les Intents Android, ce qui vous permet d’utiliser différentes configurations d’applications à la maison, en déplacement ou en voiture.</li>
+<li><b>Tiroir d’applications intelligent et recherche :</b> Recherchez des applications à l’aide du clavier avec, en option, un lancement automatique lorsqu’il ne reste qu’un seul résultat correspondant. Appuyez longuement sur n’importe quelle application pour la renommer (indépendamment de son nom sur l’écran d’accueil), la masquer, afficher ses informations ou la désinstaller.</li>
+<li><b>Mots-clés des applications :</b> Attribuez des mots-clés personnalisés aux applications du tiroir (en appuyant longuement dessus) pour les inclure dans les recherches via le clavier. Regroupez les applications sous un même tag (par exemple, « Messagerie » pour les applications de messagerie, de SMS et de chat), ajoutez des termes intuitifs pour les noms difficiles à retenir (par exemple, « TV » pour un guide des programmes) ou définissez des alias courts pour un lancement rapide. </li>
+<li><b>Favoris :</b> Marquez des applications comme favorites (en appuyant longuement dans le tiroir) pour les afficher en haut du tiroir d’applications.</li>
+<li><b>Applications web progressives (PWA) et raccourcis :</b> Prise en charge des raccourcis épinglés, tels que les sites web ajoutés via l’option « Installer » ou « Créer un raccourci » de Chrome (nécessite que « Plain » soit défini comme lanceur par défaut). Ils apparaissent dans le tiroir d’applications et peuvent être utilisés dans les ensembles d’applications et les gestes.</li>
+<li><b>En coulisses :</b> Code entièrement refondu avec de nombreuses corrections de bogues et optimisations.</li>
+</ul>
+
+<b>Autorisations :</b>
+<ul>
+<li><code>android.permission.EXPAND_STATUS_BAR</code> : Permet d'agrandir ou de réduire la barre d'état.</li>
+<li><code>android.permission.QUERY_ALL_PACKAGES</code> : Permet d'interroger les applications installées afin d'afficher la liste des applications.</li>
+<li><code>android.permission.REQUEST_DELETE_PACKAGES</code> : Nécessaire pour demander la suppression d’un paquet (il est impossible de désinstaller des applications sans la confirmation de l’utilisateur).</li>
+<li><b>Service d’accessibilité facultatif :</b> Utilisé exclusivement pour verrouiller l’écran et afficher les applications récentes.</li>
+<li><b>Aucun accès au réseau, aucune collecte de données.</b></li>
+</ul>

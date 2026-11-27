@@ -1,0 +1,26 @@
+plain - een eenvoudige en minimalistische launcher, afgeleid van Olauncher CF.
+
+<b>Functies:</b>
+<ul>
+<li><b>Minimalistisch en zonder afleiding:</b> Strak, overzichtelijk ontwerp zonder advertenties, tracking, gegevensverzameling of internettoegang.</li>
+<li><b>Privacy &amp; minimale machtigingen:</b> Maakt alleen gebruik van essentiële machtigingen. Een optionele toegankelijkheidsdienst is alleen nodig als je het scherm wilt vergrendelen of recente apps via gebaren wilt openen.</li>
+<li><b>Systeemachtergrond:</b> Stelt geen eigen achtergrond in, maar gebruikt in plaats daarvan je huidige systeemachtergrond.</li>
+<li><b>Aanpasbaar uiterlijk:</b> Licht of donker thema (handmatig of gesynchroniseerd met systeeminstellingen), aangepaste lettertypen en kleuren, aanpasbare lettergroottes en onafhankelijke uitlijning voor klok/datum, apps op het startscherm en de app-lade.</li>
+<li><b>Klok &amp; datum:</b> Optionele weergave met aanpasbare tikacties.</li>
+<li><b>Aangepaste gebaren:</b> Wijs afzonderlijke acties toe aan gebaren zoals omhoog vegen, omlaag vegen, naar links vegen, naar rechts vegen en dubbeltikken.</li>
+<li><b>Flexibele app-sets op het startscherm:</b> Maak een onbeperkt aantal app-sets aan zonder vaste limiet, herschik apps eenvoudig en pas de namen van apps op het startscherm aan in het instellingenmenu. Hoewel je handmatig tussen sets kunt wisselen, zijn ze ontworpen voor automatisch wisselen via automatiseringsapps (zoals Tasker) met behulp van Android Intents, waardoor je thuis, onderweg of in de auto verschillende app-configuraties kunt gebruiken.</li>
+<li><b>Slimme app-lade en zoekfunctie:</b> Zoek apps via het toetsenbord met optionele automatische start wanneer er nog maar één overeenkomst overblijft. Druk lang op een app om deze te hernoemen (onafhankelijk van de naam op het startscherm), te verbergen, app-informatie te openen of te verwijderen.</li>
+<li><b>App-trefwoorden:</b> Wijs aangepaste trefwoorden toe aan apps in de app-lade (door lang ingedrukt te houden) om ze op te nemen in zoekopdrachten via het toetsenbord. Groepeer apps onder één tag (bijv. „Berichten” voor e-mail-, sms- en chat-apps), voeg intuïtieve termen toe voor moeilijk te onthouden namen (bijv. „TV” voor een programmagids) of stel korte aliassen in om apps snel te starten. </li>
+<li><b>Favorieten:</b> Markeer apps als favorieten (door lang ingedrukt te houden in de app-lade) om ze bovenaan de app-lade weer te geven.</li>
+<li><b>Progressive Web Apps (PWA) &amp; snelkoppelingen:</b> Ondersteunt vastgezette snelkoppelingen, zoals websites die zijn toegevoegd via de optie ‘Installeren’ of ‘Snelkoppeling maken’ in Chrome (hiervoor moet ‘plain’ zijn ingesteld als standaard launcher). Ze verschijnen in de app-lade en kunnen worden gebruikt in app-sets en gebaren.</li>
+<li><b>Achter de schermen:</b> Volledig herwerkte codebase met uitgebreide bugfixes en optimalisaties.</li>
+</ul>
+
+<b>Toestemmingen:</b>
+<ul>
+<li><code>android.permission.EXPAND_STATUS_BAR</code>: Hiermee kan de statusbalk worden uitgevouwen of ingeklapt.</li>
+<li><code>android.permission.QUERY_ALL_PACKAGES</code>: Hiermee kunnen geïnstalleerde apps worden opgevraagd om de app-lijst weer te geven.</li>
+<li><code>android.permission.REQUEST_DELETE_PACKAGES</code>: Vereist om te vragen of pakketten mogen worden verwijderd (apps kunnen niet worden verwijderd zonder bevestiging van de gebruiker).</li>
+<li><b>Optionele toegankelijkheidsservice:</b> Wordt uitsluitend gebruikt voor het vergrendelen van het scherm en het weergeven van recente apps.</li>
+<li><b>Geen netwerktoegang, geen gegevensverzameling.</b></li>
+</ul>
