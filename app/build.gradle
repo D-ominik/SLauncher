@@ -12,37 +12,9 @@ if (releasePropsFile.exists()) releasePropsFile.withInputStream { releaseProps.l
 def signingValue = { String key, String env -> System.getenv(env) ?: releaseProps.getProperty(key) }
 def releaseStoreFile = signingValue('storeFile', 'PLAIN_KEYSTORE_FILE')
 
-// Reads the current Git tag (e.g., “v1.2.1”), if available
-def getGitVersionName = { ->
-    try {
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'describe', '--tags', '--exact-match'
-            standardOutput = stdout
-            ignoreExitValue = true
-        }
-        def tag = stdout.toString().trim()
-        return tag.startsWith('v') ? tag.substring(1) : null
-    } catch (Exception ignored) {
-        return null
-    }
-}
-
-// Calculates the deterministic versionCode (X * 10000 + Y * 100 + Z) from “X.Y.Z”
-def computeVersionCode = { String version ->
-    def matcher = (version =~ /^(\d+)\.(\d+)\.(\d+)/)
-    if (matcher.find()) {
-        int major = matcher.group(1).toInteger()
-        int minor = matcher.group(2).toInteger()
-        int patch = matcher.group(3).toInteger()
-        return major * 10000 + minor * 100 + patch
-    }
-    return 1
-}
-
 android {
-    namespace 'de.juvento.plain'
-    compileSdk 34
+    namespace = 'de.juvento.plain'
+    compileSdk = 34
 
     dependenciesInfo {
         includeInApk = false
@@ -50,8 +22,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     kotlinOptions {
@@ -59,55 +31,64 @@ android {
     }
 
     defaultConfig {
-        applicationId "de.juvento.plain"
+        applicationId = "de.juvento.plain"
         // Android 13 (API 33) is the primary target; 9 (API 28) is the floor so that
         // screen locking can always use the accessibility service (no device admin).
-        minSdk 28
-        targetSdk 34
-        versionCode = (project.findProperty('appVersionCode') ?: computeVersionCode(getGitVersionName() ?: '3.0.2')).toString().toInteger()
-        versionName = (project.findProperty('appVersionName') ?: getGitVersionName() ?: '3.0.2').toString()
+        minSdk = 28
+        targetSdk = 34
+        versionCode = 30003  // major * 10000 + minor * 100 + patch
+        versionName = "3.0.3"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
-        compose true
-        viewBinding true
-        buildConfig true
+        compose = true
+        viewBinding = true
+        buildConfig = true
     }
 
     signingConfigs {
         if (releaseStoreFile) {
             release {
-                storeFile rootProject.file(releaseStoreFile)
-                storePassword signingValue('storePassword', 'PLAIN_KEYSTORE_PASSWORD')
-                keyAlias signingValue('keyAlias', 'PLAIN_KEY_ALIAS')
-                keyPassword signingValue('keyPassword', 'PLAIN_KEY_PASSWORD')
+                storeFile = rootProject.file(releaseStoreFile)
+                storePassword = signingValue('storePassword', 'PLAIN_KEYSTORE_PASSWORD')
+                keyAlias = signingValue('keyAlias', 'PLAIN_KEY_ALIAS')
+                keyPassword = signingValue('keyPassword', 'PLAIN_KEY_PASSWORD')
             }
         }
     }
 
     buildTypes {
         release {
-            if (releaseStoreFile) signingConfig signingConfigs.release
-            debuggable false
-            minifyEnabled true
-            shrinkResources true
+            if (releaseStoreFile) signingConfig = signingConfigs.release
+            debuggable = false
+            minifyEnabled = true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            debuggable true
-            minifyEnabled false
-            applicationIdSuffix ".debug"
+            debuggable = true
+            minifyEnabled = false
+            applicationIdSuffix = ".debug"
+        }
+    }
+
+    packaging {
+        // Prebuilt Compose library that cannot be stripped; avoids the strip warning
+        jniLibs {
+            keepDebugSymbols.add('**/libandroidx.graphics.path.so')
         }
     }
 
     androidResources {
-        generateLocaleConfig true
+        generateLocaleConfig = true
     }
 
     lint {
-        abortOnError false
+        abortOnError = false
+        // Skips the lintVital* tasks of release builds; AGP 8.7 triggers a Gradle 10 deprecation there
+        checkReleaseBuilds = false
     }
 }
 

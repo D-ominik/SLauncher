@@ -12,6 +12,8 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -141,11 +143,10 @@ class AppDrawerFragment : Fragment() {
         if (!prefs.autoShowKeyboard) return
         val field = searchText
         field.requestFocus()
-        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         field.postDelayed({
             if (_binding == null) return@postDelayed
             field.requestFocus()
-            imm.showSoftInput(field, InputMethodManager.SHOW_FORCED)
+            WindowInsetsControllerCompat(requireActivity().window, field).show(WindowInsetsCompat.Type.ime())
         }, 100)
     }
 
