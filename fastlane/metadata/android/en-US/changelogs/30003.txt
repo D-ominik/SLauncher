@@ -1,0 +1,6 @@
+## [3.0.3] - 2026-11-27
+
+### Other
+
+- Preparation for F-DROID, Gradle update
+
