@@ -40,9 +40,6 @@ def computeVersionCode = { String version ->
     return 1
 }
 
-def appVersionName = (project.findProperty('appVersionName') ?: getGitVersionName() ?: '3.0.2').toString()
-def appVersionCode = (project.findProperty('appVersionCode') ?: computeVersionCode(appVersionName)).toString().toInteger()
-
 android {
     namespace 'de.juvento.plain'
     compileSdk 34
@@ -67,8 +64,8 @@ android {
         // screen locking can always use the accessibility service (no device admin).
         minSdk 28
         targetSdk 34
-        versionCode = appVersionCode
-        versionName = appVersionName
+        versionCode = (project.findProperty('appVersionCode') ?: computeVersionCode(getGitVersionName() ?: '3.0.2')).toString().toInteger()
+        versionName = (project.findProperty('appVersionName') ?: getGitVersionName() ?: '3.0.2').toString()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
