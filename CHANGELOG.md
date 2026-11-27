@@ -7,10 +7,12 @@ All notable changes to this project will be documented in this file.
 ### Documentation
 
 - *(changelog)* Update for v3.0.2
+- *(changelog)* Update for v3.0.2
 
 ### Other
 
 - Initial commit
 - Updated .gitignore
 - App renamed due to naming conflict
+- Preparation for F-DROID
 
